@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics Service</title>
+</head>
+<body>
+    <h1>Statistics Service</h1>
+
+    <h2>Add Player Statistics</h2>
+    <form id="statForm">
+        <input type="text" id="playerId" placeholder="Player ID" required>
+        <input type="number" id="goals" placeholder="Goals" required>
+        <input type="number" id="assists" placeholder="Assists" required>
+        <input type="number" id="matches" placeholder="Matches Played" required>
+        <button type="submit">Add Statistics</button>
+    </form>
+
+    <h2>Get Statistics by Player ID</h2>
+    <input type="text" id="searchPlayerId" placeholder="Enter Player ID">
+    <button id="searchStatBtn">Get Statistics</button>
+    <ul id="statResult"></ul>
+
+    <h2>Get Full Player Info (Player + Statistics)</h2>
+    <input type="text" id="fullPlayerId" placeholder="Enter Player ID">
+    <button id="fullInfoBtn">Get Full Info</button>
+    <ul id="fullResult"></ul>
+
+    <h2>All Statistics</h2>
+    <ul id="allStats"></ul>
+
+    <script src="main.js"></script>
+</body>
+</html>
