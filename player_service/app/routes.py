@@ -19,9 +19,3 @@ def serialize(player):
 def get_all_players():
     players = collection.find()
     return [serialize(player) for player in players]
-
-@router.post("/players")
-def create_player(player: dict):
-    result = collection.insert_one(player)
-    return {"id": str(result.inserted_id)}
-
