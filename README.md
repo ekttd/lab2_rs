@@ -7,7 +7,7 @@
    python -m venv venv
 2. Активация
    venv\Scripts\activate
-3.Установка зависимостей
+3. Установка зависимостей
   pip install -r requirements.txt
 
 Запуск бекэнда:
