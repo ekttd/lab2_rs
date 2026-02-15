@@ -1,5 +1,5 @@
 const playerApi = 'http://127.0.0.1:8001';
-
+const statPage = 'http://127.0.0.1:5500/index.html'
 
 document.getElementById('playerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -24,10 +24,6 @@ document.getElementById('playerForm').addEventListener('submit', async (e) => {
 
     document.getElementById('playerForm').reset();
 });
-
-function goToStatistics() {
-    window.location.href = STAT_SERVICE;
-}
 
 
 async function loadPlayers() {
@@ -83,5 +79,8 @@ document.getElementById('searchBtn').addEventListener('click', async () => {
     }
 });
 
+function goToStatistics() {
+    window.location.href = statPage;
+}
 
 loadPlayers();

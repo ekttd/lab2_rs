@@ -35,7 +35,6 @@ def create_statistics_by_name(stat: dict):
     # запрос к player-service
     response = requests.get(f"{PLAYER_SERVICE_URL}/players/search/{name}")
 
-    print(name)
 
     if response.status_code != 200:
         raise HTTPException(status_code=404, detail="Player service error")

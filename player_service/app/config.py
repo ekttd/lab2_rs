@@ -5,4 +5,4 @@ load_dotenv()
 
 MONGO_URL = os.getenv("MONGO_URL")
 DATABASE_NAME = os.getenv("DATABASE_NAME")
-SERVICE_PORT = int(os.getenv("SERVICE_PORT", 8000))
+SERVICE_PORT = int(os.getenv("SERVICE_PORT", 8001))

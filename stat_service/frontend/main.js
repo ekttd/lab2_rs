@@ -1,5 +1,6 @@
 const statisticsApi = 'http://127.0.0.1:8002';
-
+const playerApi = 'http://127.0.0.1:8001';
+const playerPage = 'http://127.0.0.1:5501/index.html'
 
 document.getElementById('statForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ document.getElementById('fullInfoBtn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`${statisticsApi}/statistics/by-name/${encodeURIComponent(name)}`);
+        const response = await fetch(`${statisticsApi}/statistics/by-name/${name}`);
 
         if (!response.ok) {
             result.innerHTML = '<li>Player or statistics not found</li>';
@@ -90,19 +91,33 @@ async function loadAllStatistics() {
         const response = await fetch(`${statisticsApi}/statistics`);
         const stats = await response.json();
 
-        if (stats.length === 0) {
+        const responsePlayers = await fetch(`${playerApi}/players`);
+        const players = await responsePlayers.json();
+
+        if (!stats.length) {
             list.innerHTML = '<li>No statistics yet</li>';
             return;
         }
 
         for (const stat of stats) {
+
+            const player = players.find(p => p.id === stat.id);
+
+            if (!player) continue;
+
             const li = document.createElement('li');
             li.textContent =
-                `Player name: ${stat.name} | ` +
+                `Name: ${player.name} | ` +
+                `Club: ${player.club} | ` +
                 `Goals: ${stat.goals} | ` +
                 `Assists: ${stat.assists} | ` +
                 `Matches: ${stat.matches_played}`;
+
             list.appendChild(li);
+        }
+
+        if (!list.hasChildNodes()) {
+            list.innerHTML = '<li>No valid statistics found</li>';
         }
 
     } catch (error) {
@@ -110,6 +125,7 @@ async function loadAllStatistics() {
         console.error(error);
     }
 }
+
 
 document.getElementById('searchStatBtn').addEventListener('click', async () => {
 
@@ -123,7 +139,7 @@ document.getElementById('searchStatBtn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`${statisticsApi}/statistics/by-name/${encodeURIComponent(name)}`);
+        const response = await fetch(`${statisticsApi}/statistics/by-name/${name}`);
 
         if (!response.ok) {
             result.innerHTML = '<li>Statistics not found</li>';
@@ -150,7 +166,7 @@ document.getElementById('searchStatBtn').addEventListener('click', async () => {
 
 
 function goToStart() {
-    window.location.href = "http://127.0.0.1:5501/index.html";
+    window.location.href = playerPage;
 }
 
 loadAllStatistics();
