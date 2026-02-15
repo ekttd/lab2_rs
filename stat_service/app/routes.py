@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from bson import ObjectId
 from .database import db
-from .config import PLAYER_SERVICE_URL
 import requests
 
 router = APIRouter()
